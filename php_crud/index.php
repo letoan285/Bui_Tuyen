@@ -56,7 +56,7 @@ include_once "header.php";
                         <td><?= $product["category_id"]?></td>
                         <td>
                             <a class="btn btn-sm btn-info" href="details.php?id=<?= $product["id"]?>">View</a>
-                            <a class="btn btn-sm btn-warning" href="">Edit</a>
+                            <a class="btn btn-sm btn-warning" href="edit_product.php?id=<?= $product["id"]?>">Edit</a>
                             <a class="btn btn-sm btn-danger" href="">Del</a>
                         </td>
                     </tr>

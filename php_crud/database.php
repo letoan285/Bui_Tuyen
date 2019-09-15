@@ -11,4 +11,8 @@ try {
     echo $e->getMessage();die;
 }
 
+function dd($x){
+    var_dump($x);die;
+}
+
 ?>
