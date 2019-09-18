@@ -15,7 +15,16 @@ $stmt = $conn->prepare($sql);
 
 // step 4;
 $stmt->execute();
+
+
 $products = $stmt->fetchAll();
+
+
+
+
+
+
+
 
 ?>
 
@@ -26,7 +35,7 @@ include_once "header.php";
     <div class="row">
         <div class="col-md-12">
             <h3 class="text-center">Danh sach san pham</h3>
-            <table class="table table-bordered table-dark">
+            <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>STT</th>
@@ -47,7 +56,7 @@ include_once "header.php";
                         <td><?= $product["cat_name"]?></td>
                         <td>
                             <a class="btn btn-sm btn-info" href="details.php?id=<?= $product["id"]?>">View</a>
-                            <a class="btn btn-sm btn-warning" href="">Edit</a>
+                            <a class="btn btn-sm btn-warning" href="edit_product.php?id=<?= $product["id"]?>">Edit</a>
                             <a class="btn btn-sm btn-danger"  data-href="delete.php?id=<?= $product["id"]?>" data-toggle="modal" data-target="#confirm-delete">Remove</a>
                         </td>
                     </tr>
