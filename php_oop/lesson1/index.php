@@ -1,55 +1,32 @@
 <?php 
-class Computer {
-    public function __construct(){
-        $this->name = 'HP';
+
+class Shopping {
+
+    public $bill= 0;
+
+    public function getRice($number){
+      
+        $this->bill = $this->bill +  $number*15000;
+        return $this;
     }
-    public static $price = 888;
-
-
-    public $address = "Viet Nam";
-
-    public static $color = 'Yellow';
-
-
-    public static function getPrice(){
-        $x = new static;
-        return $x;
+    public function getFish($number){
+        
+        $this->bill = $this->bill + $number*50000;
+        return $this;
     }
-
-    public static function getAddress(){
-        // return self->$address;
-        // $n = new self();
-        $n = new Computer();
-        return $n->address;
+    public function getMango($number){
+       
+        $this->bill = $this->bill +  $number*18000;
+        return $this;
     }
-
-    public function getAddress1()
-    {
-        return 'Co Nhue, Hanoi';
-    }
-
-    public function getColor(){
-        return self::$color;
-    }
-    function setAddress(){
-        $this->address = $this;
+    public function getMeat($number){
+      
+        $this->bill = $this->bill +  $number*80000;
+        return $this;
     }
 }
-// Scope Resolution
-// echo Computer::getPrice();
-// $p = new Computer();
-// echo $p::$price;
-$x = new Computer();
+$shopping = new Shopping();
 
-$x->setAddress();
-// var_dump($x->getPrice()->address);
+$totalMoney  = $shopping->getRice(1)->getFish(2)->getMango(3)->getMeat(4);
 
-echo $x->address->getAddress1();
-
-// di cho mua do
-//5 kg gao(rice), gia 15k/kg;
-//4 kg ca(fish), gia 50k/kg
-//6kg xoai(mango), gia 18k/kg
-//14kg thit(meat), gia 80k/kg
-// Cau hoi, viet class (BIll, ....);
-//so tien phai tra $bill === getGiago()->getGiaC()->getMango()->getMeat(); tong so tien phai tra 
+echo($totalMoney->bill);
