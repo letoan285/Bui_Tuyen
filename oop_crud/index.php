@@ -4,7 +4,12 @@ require_once "User.php";
 
 
 // var_dump($products = User::all());die;
- $products = Product::all();
+$products = Product::all();
+// $id=4;
+// $model = Product::find($id);
+// $product = Product::where(['id', '>', 2])->andwhere(['id', '=', 7])->orwhere(['id', '>', 3])->get();
+// var_dump($product);die;
+
 ?>
 
 <!DOCTYPE html>
@@ -42,9 +47,9 @@ require_once "User.php";
                         <td><?= $product->price?></td>
                         <td><?= $product->category_id?></td>
                         <td>
-                            <a class="btn btn-sm btn-info" href="">View</a>
-                            <a class="btn btn-sm btn-warning" href="">Edit</a>
-                            <a class="btn btn-sm btn-danger" href="">Del</a>
+                            <a class="btn btn-sm btn-info" href="detail.php?id=<?= $product->id?>">View</a>
+                            <a class="btn btn-sm btn-warning" href="edit.php?id=<?= $product->id?>">Edit</a>
+                            <a class="btn btn-sm btn-danger" href="delete.php?id=<?= $product->id?>">Del</a>
                         </td>
                     </tr>
                 <?php endforeach ?>
