@@ -90,7 +90,54 @@ class BaseModel {
     }
     public function update()
     {
-        dd($this);
+        $this->sql = "UPDATE $this->table SET ";
+        foreach($this->columns as $col){
+            if($this->{$col} != null){
+                $this->sql .= " $col = '".$this->{$col}."', ";
+            }
+        }
+        $this->sql = rtrim($this->sql, ", ");
+
+        $this->sql .= " WHERE id = $this->id";
+
+        $stmt = $this->conn->prepare($this->sql);
+        try{
+            $stmt->execute();
+            return $this;
+        } catch(Exception $e) {
+            var_dump($e->getMessage());die;
+        }
+    }
+    public function save(){
+        $this->sql = "INSERT INTO $this->table (";
+        foreach($this->columns as $col){
+            if($this->{$col} != null){
+                $this->sql .= "$col, ";
+            }
+            
+        }
+        $this->sql = rtrim($this->sql, ", ");
+
+        $this->sql .= ") VALUES (";
+        foreach($this->columns as $col){
+            if($this->{$col} != null){
+                $this->sql .= "'" .$this->{$col}."', ";
+            }
+            
+        }
+        $this->sql = rtrim($this->sql, ", ");
+        $this->sql .= ")";
+        $stmt = $this->conn->prepare($this->sql);
+
+        try{
+            $stmt->execute();
+
+            $this->id = $this->conn->lastInsertId();
+            return $this;
+
+        } catch(Exception $e) {
+            var_dump($e->getMessage());die;
+        }
     }
 
 }
